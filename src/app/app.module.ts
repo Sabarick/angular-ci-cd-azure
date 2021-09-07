@@ -1,81 +1,41 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import {
-  AuthGuard,
-  AuthInterceptor,
-  CalculationService,
-  CategoryService,
-  DeactivateGuard,
-  ErrorResponseInterceptor,
-  LoginService,
-  PostService,
-  ReversalAuthGuard,
-  StyleService,
-  UserService
-} from './services';
-import { AuthStore, CalculationStore, CategoryStore, PostStore, UserStore } from './stores';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { TopBarComponent } from './top-bar/top-bar.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CartComponent } from './cart/cart.component';
+import { ShippingComponent } from './shipping/shipping.component';
 
-import { HOME_URL, LOGIN_URL, TIME_RANGE_SEPARATOR } from 'app/common';
-import { MainModule } from './layouts';
-import { LoginModule, NotFoundModule } from './containers';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
-    MainModule,
-    LoginModule,
-    NotFoundModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      { path: '', component: ProductListComponent },
+      { path: 'products/:productId', component: ProductDetailsComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'shipping', component: ShippingComponent },
+    ])
   ],
-  providers: [
-    AuthGuard,
-    CalculationService,
-    CategoryService,
-    DeactivateGuard,
-    LoginService,
-    PostService,
-    ReversalAuthGuard,
-    StyleService,
-    UserService,
-    AuthStore,
-    CalculationStore,
-    CategoryStore,
-    PostStore,
-    UserStore,
-    {
-      provide: HOME_URL,
-      useValue: ''
-    },
-    {
-      provide: LOGIN_URL,
-      useValue: 'login'
-    },
-    {
-      provide: TIME_RANGE_SEPARATOR,
-      useValue: ' - '
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorResponseInterceptor,
-      multi: true
-    }
+  declarations: [
+    AppComponent,
+    TopBarComponent,
+    ProductListComponent,
+    ProductAlertsComponent,
+    ProductDetailsComponent,
+    CartComponent,
+    ShippingComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
