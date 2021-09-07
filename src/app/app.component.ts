@@ -1,30 +1,15 @@
-import { Component } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute, Data } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
 
-import { environment } from 'environments/environment';
+import { UserService } from "./core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private userService: UserService) {}
 
-  name = environment.appName;
-  title: string;
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
-    router.events
-      .filter((event) => event instanceof NavigationEnd)
-      .map(() => this.route.firstChild)
-      .filter((childRoute) => childRoute !== null)
-      .switchMap((childRoute) => childRoute.data)
-      .filter((data) => !!data)
-      .subscribe((data: Data) => {
-        this.title = data.title;
-      });
+  ngOnInit() {
+    this.userService.populate();
   }
 }

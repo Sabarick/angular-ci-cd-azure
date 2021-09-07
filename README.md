@@ -1,117 +1,80 @@
-# angular-app-example
+[![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
+[![Build Status](https://travis-ci.org/gothinkster/angular-realworld-example-app.svg?branch=master)](https://travis-ci.org/gothinkster/angular-realworld-example-app)
 
-<p align="center">
-  <a href="https://demo.zhaidongxi.com/angular-app-example/" target="_blank">
-    <img src="./media.gif" alt="angular-app-example" />
-  </a>
-</p>
+# ![Angular Example App](logo.png)
 
-This is an example app for [Angular](https://github.com/angular/angular).
+> ### Angular codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld-example-apps) spec and API.
 
-[中文文档](./README.zh_CN.md)
 
-The [demo](https://demo.zhaidongxi.com/angular-app-example/) account information:
+<a href="https://stackblitz.com/edit/angular-realworld" target="_blank"><img width="187" src="https://github.com/gothinkster/realworld/blob/master/media/edit_on_blitz.png?raw=true" /></a>&nbsp;&nbsp;<a href="https://thinkster.io/tutorials/building-real-world-angular-2-apps" target="_blank"><img width="384" src="https://raw.githubusercontent.com/gothinkster/realworld/master/media/learn-btn-hr.png" /></a>
 
-- Username: `demo`
-- Password: `demo`
+### [Demo](https://angular.realworld.io)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
-**Note: Please don't change the password. You can add an account for yourself**
 
-This application provides the following features:
 
-- Google [Material](https://github.com/angular/material2) Design
-- Sass themes
-- Use the beautiful RESTful API
-- No cookies
-- User Login
-- [Charts](https://github.com/swimlane/ngx-charts) and [Datatable](https://github.com/swimlane/ngx-datatable)
-- Create/Update/Delete Data
-- Search/Sort Data
-- File upload
-- HTTP Interceptor
+This codebase was created to demonstrate a fully fledged application built with Angular that interacts with an actual backend server including CRUD operations, authentication, routing, pagination, and more. We've gone to great lengths to adhere to the [Angular Styleguide](https://angular.io/styleguide) & best practices.
 
-## Quick Start
+Additionally, there is an Angular 1.5 version of this codebase that you can [fork](https://github.com/gothinkster/angularjs-realworld-example-app) and/or [learn how to recreate](https://thinkster.io/angularjs-es6-tutorial).
 
-```
-git clone https://github.com/daixianceng/angular-app-example.git
-cd angular-app-example
 
-# Install Angular CLI if necessary
-npm install -g @angular/cli@latest
+# How it works
 
-# For Windows user if an error occurred
-npm install -g windows-build-tools
+We're currently working on some docs for the codebase (explaining where functionality is located, how it works, etc) but the codebase should be straightforward to follow as is. We've also released a [step-by-step tutorial w/ screencasts](https://thinkster.io/tutorials/building-real-world-angular-2-apps) that teaches you how to recreate the codebase from scratch.
 
-# Install dependencies
-npm install
-# Run application in development
-npm start
-```
+### Making requests to the backend API
 
-Now you can open `localhost:4200` in your borwser. The project depends on the API of [yii2-app-example](https://github.com/daixianceng/yii2-app-example). This is a clean and beautiful RESTful API, you will love it. The project has a default proxy to `https://demo.zhaidongxi.com/yii2-app-example-backend-api`, so you do not need to install `yii2-app-example`.
+For convenience, we have a live API server running at https://conduit.productionready.io/api for the application to make requests against. You can view [the API spec here](https://github.com/GoThinkster/productionready/blob/master/api) which contains all routes & responses for the server.
 
-Compile the project:
+The source code for the backend server (available for Node, Rails and Django) can be found in the [main RealWorld repo](https://github.com/gothinkster/realworld).
 
-```
-npm run build
-```
+If you want to change the API URL to a local server, simply edit `src/environments/environment.ts` and change `api_url` to the local server's URL (i.e. `localhost:3000/api`)
 
-## Directory Layout
 
-Before you start, take a moment to see how the project structure looks like:
+# Getting started
 
-```
-.
-├── /dist/                           # The folder for compiled output
-├── /e2e/                            # The end-to-end tests
-├── /node_modules/                   # 3rd-party libraries and utilities
-├── /src/                            # The source code of the application
-│   ├── /app/                        # The core source code
-│   │   ├── /common/                 # The utilities
-│   │   ├── /components/             # Angular components
-│   │   ├── /containers/             # The page modules
-│   │   ├── /layouts/                # The page layouts
-│   │   ├── /models/                 # The data models
-│   │   ├── /services/               # Angular services
-│   │   ├── /stores/                 # The stores of the application
-│   │   ├── /app-routing.module.ts   # The routing module
-│   │   ├── /app.component.html      # The template of the root component
-│   │   ├── /app.component.scss      # The style of the root component
-│   │   ├── /app.component.spec.ts   # The unit test for root component
-│   │   ├── /app.component.ts        # The root component
-│   │   └── /app.modules.ts          # The root module
-│   ├── /assets/                     # Static files which are copied into the /dist folder
-│   ├── /environments/               # The folder contains environment configurations
-│   │   ├── /environment.prod.ts     # The file for production environment
-│   │   └── /environment.ts          # The file for development environment
-│   ├── /themes/                     # The folder contains themes of the application
-│   ├── /app-theme.scss              # Define the current theme
-│   ├── /favicon.ico                 # Angular icon
-│   ├── /index.html                  # The main HTML page
-│   ├── /main.ts                     # The main entry point for application
-│   ├── /polyfills.ts                # The file includes polyfills
-│   ├── /styles.scss                 # The global styles of the application
-│   ├── /test.ts                     # The main entry point for unit tests
-│   ├── /tsconfig.app.json           # TypeScript compiler configuration for application
-│   ├── /tsconfig.spec.json          # TypeScript compiler configuration for unit tests
-│   └── /typings.d.ts                # TypeScript Typings
-├── .editorconfig                    # Configuration for your editor
-├── .gitignore                       # Git ignore configuration
-├── .jsbeautifyrc                    # Configuration for Beautify plugin
-├── angular.json                     # Configuration for Angular CLI
-├── karma.conf.js                    # Configuration for Karma
-├── LICENSE                          # The license of the project
-├── media.gif                        # The project demo animation file
-├── package.json                     # The list of 3rd party libraries and utilities
-├── protractor.conf.js               # End-to-end test configuration for Protractor
-├── proxy.json                       # The proxy configuration in development
-├── README.md                        # Documentation
-├── README.zh_CN.md                  # Chinese documentation
-├── sass-lint.yml                    # Configuration for Sass Lint
-├── tsconfig.json                    # TypeScript compiler configuration
-└── tslint.json                      # Linting configuration for TSLint and Codelyzer
-```
+Make sure you have the [Angular CLI](https://github.com/angular/angular-cli#installation) installed globally. We use [Yarn](https://yarnpkg.com) to manage the dependencies, so we strongly recommend you to use it. you can install it from [Here](https://yarnpkg.com/en/docs/install), then run `yarn install` to resolve all dependencies (might take a minute).
 
-## License
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-**angular-app-example** is released under the BSD 3-Clause License. See the bundled `LICENSE` for details.
+### Building the project
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+
+## Functionality overview
+
+The example application is a social blogging site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication. You can view a live demo over at https://angular.realworld.io
+
+**General functionality:**
+
+- Authenticate users via JWT (login/signup pages + logout button on settings page)
+- CRU* users (sign up & settings page - no deleting required)
+- CRUD Articles
+- CR*D Comments on articles (no updating required)
+- GET and display paginated lists of articles
+- Favorite articles
+- Follow other users
+
+**The general page breakdown looks like this:**
+
+- Home page (URL: /#/ )
+    - List of tags
+    - List of articles pulled from either Feed, Global, or by Tag
+    - Pagination for list of articles
+- Sign in/Sign up pages (URL: /#/login, /#/register )
+    - Uses JWT (store the token in localStorage)
+    - Authentication can be easily switched to session/cookie based
+- Settings page (URL: /#/settings )
+- Editor page to create/edit articles (URL: /#/editor, /#/editor/article-slug-here )
+- Article page (URL: /#/article/article-slug-here )
+    - Delete article button (only shown to article's author)
+    - Render markdown from server client side
+    - Comments section at bottom of page
+    - Delete comment button (only shown to comment's author)
+- Profile page (URL: /#/profile/:username, /#/profile/:username/favorites )
+    - Show basic user info
+    - List of articles populated from author's created articles or author's favorited articles
+
+
+<br />
+
+[![Brought to you by Thinkster](https://raw.githubusercontent.com/gothinkster/realworld/master/media/end.png)](https://thinkster.io)

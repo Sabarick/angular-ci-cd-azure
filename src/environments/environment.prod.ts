@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  appName: 'My Angular Project',
-  apiBaseUrl: 'api/'
+  api_url: 'https://conduit.productionready.io/api'
 };

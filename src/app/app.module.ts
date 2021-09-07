@@ -1,81 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import {
-  AuthGuard,
-  AuthInterceptor,
-  CalculationService,
-  CategoryService,
-  DeactivateGuard,
-  ErrorResponseInterceptor,
-  LoginService,
-  PostService,
-  ReversalAuthGuard,
-  StyleService,
-  UserService
-} from './services';
-import { AuthStore, CalculationStore, CategoryStore, PostStore, UserStore } from './stores';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
+import { HomeModule } from './home/home.module';
+import {
+  FooterComponent,
+  HeaderComponent,
+  SharedModule
+} from './shared';
 import { AppRoutingModule } from './app-routing.module';
-
-import { HOME_URL, LOGIN_URL, TIME_RANGE_SEPARATOR } from 'app/common';
-import { MainModule } from './layouts';
-import { LoginModule, NotFoundModule } from './containers';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
-    BrowserAnimationsModule,
     BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    MainModule,
-    LoginModule,
-    NotFoundModule
+    CoreModule,
+    SharedModule,
+    HomeModule,
+    AuthModule,
+    AppRoutingModule
   ],
-  providers: [
-    AuthGuard,
-    CalculationService,
-    CategoryService,
-    DeactivateGuard,
-    LoginService,
-    PostService,
-    ReversalAuthGuard,
-    StyleService,
-    UserService,
-    AuthStore,
-    CalculationStore,
-    CategoryStore,
-    PostStore,
-    UserStore,
-    {
-      provide: HOME_URL,
-      useValue: ''
-    },
-    {
-      provide: LOGIN_URL,
-      useValue: 'login'
-    },
-    {
-      provide: TIME_RANGE_SEPARATOR,
-      useValue: ' - '
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorResponseInterceptor,
-      multi: true
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

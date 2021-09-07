@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-app-example": {
+    "ang2-conduit": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -15,37 +15,23 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "showCircularDependencies": true,
             "polyfills": "src/polyfills.ts",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src",
-                "src/themes"
-              ]
-            },
             "assets": [
               "src/assets",
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
-              "node_modules/froala-editor/css/froala_style.min.css",
-              "node_modules/font-awesome/css/font-awesome.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/froala-editor/js/froala_editor.pkgd.min.js"
-            ]
+            "scripts": [],
+            "aot": true
           },
           "configurations": {
             "production": {
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -54,6 +40,12 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
+              ],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
               ]
             }
           }
@@ -61,20 +53,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-app-example:build",
-            "port": 4200,
-            "host": "0.0.0.0"
+            "browserTarget": "ang2-conduit:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-app-example:build:production"
+              "browserTarget": "ang2-conduit:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-app-example:build"
+            "browserTarget": "ang2-conduit:build"
           }
         },
         "test": {
@@ -84,15 +74,9 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/froala-editor/js/froala_editor.pkgd.min.js"
-            ],
+            "scripts": [],
             "styles": [
-              "src/styles.scss",
-              "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
-              "node_modules/froala-editor/css/froala_style.min.css",
-              "node_modules/font-awesome/css/font-awesome.css"
+              "src/styles.css"
             ],
             "assets": [
               "src/assets",
@@ -114,16 +98,16 @@
         }
       }
     },
-    "angular-app-example-e2e": {
-      "root": "",
-      "sourceRoot": "",
+    "ang2-conduit-e2e": {
+      "root": "e2e",
+      "sourceRoot": "e2e",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "angular-app-example:serve"
+            "devServerTarget": "ang2-conduit:serve"
           }
         },
         "lint": {
@@ -140,11 +124,11 @@
       }
     }
   },
-  "defaultProject": "angular-app-example",
+  "defaultProject": "ang2-conduit",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "style": "css"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
