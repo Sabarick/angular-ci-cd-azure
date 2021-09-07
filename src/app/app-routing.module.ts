@@ -1,34 +1,111 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Error404PageComponent } from './pages/error404-page/error404-page.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { RoutesConfig } from './configs/routes.config';
 
-const routesNames = RoutesConfig.routesNames;
+import { AuthGuard, ReversalAuthGuard, DeactivateGuard } from 'app/services';
+import { MainComponent } from 'app/layouts/main/main.component';
+import { CategoryComponent } from 'app/containers/category/category.component';
+import { LoginComponent } from 'app/containers/login/login.component';
+import { NotFoundComponent } from 'app/containers/not-found/not-found.component';
+import { OverviewComponent } from 'app/containers/overview/overview.component';
+import { PostComponent } from 'app/containers/post/post.component';
+import { PostWritingComponent } from 'app/containers/post/post-writing.component';
+import { ProfileComponent } from 'app/containers/profile/profile.component';
+import { UserComponent } from 'app/containers/user/user.component';
+import { environment } from 'environments/environment';
 
 const routes: Routes = [
-  { path: routesNames.home, component: HomePageComponent, pathMatch: 'full' },
-  { path: routesNames.heroes.basePath, loadChildren: () => import('./modules/heroes/heroes.module').then(m => m.HeroesModule) },
-  { path: routesNames.error404, component: Error404PageComponent },
-
-  { path: 'en', redirectTo: '' }, // because english language is the default one
-
-  // otherwise redirect to 404
-  { path: '**', redirectTo: RoutesConfig.routes.error404 }
+  {
+    path: 'login',
+    canActivate: [ReversalAuthGuard],
+    component: LoginComponent,
+    data: {
+      title: 'Login'
+    }
+  },
+  {
+    path: '',
+    redirectTo: '/overview',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: MainComponent,
+    canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
+    children: [
+      {
+        path: 'category',
+        component: CategoryComponent,
+        data: {
+          title: 'Categories',
+        }
+      },
+      {
+        path: 'overview',
+        component: OverviewComponent,
+        data: {
+          title: 'Overview',
+        }
+      },
+      {
+        path: 'post',
+        component: PostComponent,
+        data: {
+          title: 'Posts',
+        }
+      },
+      {
+        path: 'post/writing',
+        component: PostWritingComponent,
+        canDeactivate: [DeactivateGuard],
+        data: {
+          title: 'Create Post',
+        }
+      },
+      {
+        path: 'post/writing/:id',
+        component: PostWritingComponent,
+        canDeactivate: [DeactivateGuard],
+        data: {
+          title: 'Update Post',
+        }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: {
+          title: 'Profile',
+        }
+      },
+      {
+        path: 'user',
+        component: UserComponent,
+        data: {
+          title: 'Users',
+        }
+      }
+    ]
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+    data: {
+      title: 'Page not found (404)'
+    }
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    data: {
+      title: 'Page not found (404)'
+    }
+  }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
-      initialNavigation: 'enabled',
-      scrollPositionRestoration: 'enabled',
-      anchorScrolling: 'enabled'
-    })
+    RouterModule.forRoot(routes, { enableTracing: !environment.production })
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [RouterModule]
 })
-
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

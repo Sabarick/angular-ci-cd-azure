@@ -1,69 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { Meta, Title } from '@angular/platform-browser';
-import { configureTestSuite } from 'ng-bullet';
-import { NavigationEnd } from '@angular/router';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { NgxExampleLibraryComponent } from '@ismaestro/ngx-example-library';
-import { of } from 'rxjs';
-import { MockComponent } from 'ng-mocks';
-import { RouterTestingModule } from '@angular/router/testing';
-import { I18n } from '@ngx-translate/i18n-polyfill';
-import { LOCALE_ID, PLATFORM_ID } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
 describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
-
-  const matSnackBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
-  const routerSpy = jasmine.createSpyObj('Router', ['events']);
-
-  configureTestSuite(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       declarations: [
-        MockComponent(HeaderComponent),
-        MockComponent(SearchBarComponent),
-        MockComponent(FooterComponent),
-        MockComponent(NgxExampleLibraryComponent),
         AppComponent
       ],
-      providers: [
-        { provide: MatSnackBar, useValue: matSnackBarSpy },
-        { provide: Meta, useValue: {} },
-        {
-          provide: I18n, useValue: () => {
-          }
-        },
-        {
-          provide: Title, useValue: {
-            setTitle: () => {
-            }
-          }
-        },
-        { provide: PLATFORM_ID, useValue: 'browser' },
-        { provide: LOCALE_ID, useValue: 'en' }
-      ]
-    });
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.debugElement.componentInstance;
-    routerSpy.events.and.returnValue(of(new NavigationEnd(1, '', '/')));
-    fixture.detectChanges();
-  });
-
-  it('should create the app', (() => {
-    expect(component).toBeTruthy();
+    }).compileComponents();
   }));
-
-  it('should check browser features', (() => {
-    expect(component.checkBrowserFeatures()).toBeTruthy();
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
+  it(`should have as title 'app'`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('app');
+  }));
+  it('should render title in a h1 tag', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
   }));
 });

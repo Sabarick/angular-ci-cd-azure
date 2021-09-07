@@ -1,184 +1,117 @@
-<p align="center">
-  <h3 align="center">Angular Example App</h3>
+# angular-app-example
 
-  <p align="center">
-    Example app with Angular 9 + Angular CLI + Angular Universal + i18n + Firebase
-    <br>
-    <br>
-    :clap::clap::tada::tada::tada::tada::clap::clap:
-    <br>
-    <br>
-    Base project made with much :heart:. Contains CRUD, patterns, generated library, and much more!
-    <br>
-    <br>
-    <img src="https://media.giphy.com/media/ce28l1P13CVK56OyCN/giphy.gif" alt="Demo example"/>
-    <br>
-    <br>
-    <a href="https://github.com/Ismaestro/angular9-example-app/issues/new">Report bug</a>
-    ·
-    <a href="https://github.com/Ismaestro/angular9-example-app/issues/new">Request feature</a>
-  </p>
+<p align="center">
+  <a href="https://demo.zhaidongxi.com/angular-app-example/" target="_blank">
+    <img src="./media.gif" alt="angular-app-example" />
+  </a>
 </p>
 
-## Table of contents
+This is an example app for [Angular](https://github.com/angular/angular).
 
-- [Status](#status)
-- [What's included](#whats-included)
-- [Quick start](#quick-start)
-- [Bugs and feature requests](#bugs-and-feature-requests)
-- [Apply this to your project](#apply-this-to-your-project)
-- [Contributing](#contributing)
-- [Creators](#creators)
-- [Thanks](#thanks)
-- [Copyright and license](#copyright-and-license)
+[中文文档](./README.zh_CN.md)
 
-## Status
+The [demo](https://demo.zhaidongxi.com/angular-app-example/) account information:
 
-![travis](https://travis-ci.org/Ismaestro/angular8-example-app.svg?branch=master)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Ismaestro_angular8-example-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=Ismaestro_angular8-example-app)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Ismaestro_angular8-example-app&metric=coverage)](https://sonarcloud.io/dashboard?id=Ismaestro_angular8-example-app)
-[![dependency Status](https://david-dm.org/ismaestro/angular8-example-app.svg)](https://david-dm.org/ismaestro/angular8-example-app#info=dependencies)
-[![devDependency Status](https://david-dm.org/ismaestro/angular8-example-app/dev-status.svg)](https://david-dm.org/ismaestro/angular8-example-app#info=devDependencies)
-[![peerDependencies Status](https://david-dm.org/ismaestro/angular8-example-app/peer-status.svg)](https://david-dm.org/ismaestro/angular8-example-app?type=peer)
-[![GitHub stars](https://img.shields.io/github/stars/ismaestro/angular8-example-app.svg?style=social&label=Star)](https://github.com/ismaestro/angular8-example-app)
-[![GitHub forks](https://img.shields.io/github/forks/ismaestro/angular8-example-app.svg?style=social&label=Fork)](https://github.com/ismaestro/angular8-example-app/fork)
+- Username: `demo`
+- Password: `demo`
 
-## What's included
+**Note: Please don't change the password. You can add an account for yourself**
 
-- [x] CRUD: create, update and remove heroes with Firebase
-- [x] Angular Universal (SSR)
-- [x] Use of StateTransferModule to share state between browser and server
-- [x] Security Headers using [helmet](https://helmetjs.github.io).
-- [x] Internationalization with the official i18n. Separated builds for english and spanish.
-- [x] Lazy loading modules
-- [x] Service Workers enabled!
-- [x] More logical directory structure (from
-      [here](https://itnext.io/choosing-a-highly-scalable-folder-structure-in-angular-d987de65ec7))
-- [x] Basic example library
-- [x] Following the [best practices](https://angular.io/guide/styleguide)!
-- [x] Search bar, to look for heroes
-- [x] Custom loading page
-- [x] Example of Angular Resolver for Hero Detail
-- [x] Lazy loading images with [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
-- [x] Modal and toasts (snakbar)!
-- [x] Scroll restoration and anchor examples
-- [x] Responsive layout (flex layout module)
-- [x] SASS (most common used functions and mixins) and BEM styles
-- [x] Animations with [ng-animate](https://jiayihu.github.io/ng-animate/)
-- [x] Angular Pipes
-- [x] Interceptors and Events (Progress bar active, if a request is pending)
-- [x] Scroll to first invalid input in forms.
-      ([ngx-scroll-to-first-invalid](https://github.com/Ismaestro/ngx-scroll-to-first-invalid))
-- [x] Modernizr (browser features detection)
-- [x] Browser filter (Bowser) because of IE ^^
-- [x] [Sentry](https://sentry.io)! (logs every error in the app)
-- [x] Google Tag Manager
-- [x] ES6 Promises and Observables
-- [x] Unit tests with Jasmine and Karma including code coverage. Use of
-      [ng-bullet](https://www.npmjs.com/package/ng-bullet),
-      [karma-mocha-reporter](https://github.com/litixsoft/karma-mocha-reporter) and
-      [ng-mocks](https://github.com/ike18t/ng-mocks)
-- [x] End-to-end tests with Protractor, (moving to Cypress)
+This application provides the following features:
 
-### Angular Universal and i18n
+- Google [Material](https://github.com/angular/material2) Design
+- Sass themes
+- Use the beautiful RESTful API
+- No cookies
+- User Login
+- [Charts](https://github.com/swimlane/ngx-charts) and [Datatable](https://github.com/swimlane/ngx-datatable)
+- Create/Update/Delete Data
+- Search/Sort Data
+- File upload
+- HTTP Interceptor
 
-This project is using firebase and Angular Universal with the official internationalization. You can
-navigate through every language and reload (and share) every page in the application without losing
-context. This is very useful for SEO purposes and you almost have a ready for production app. If you
-want to translate the messages you can use this awesome tool,
-[Tiny Translator](https://martinroob.github.io/tiny-translator/en/#/translate) or follow
-[this tutorial](https://github.com/martinroob/ngx-i18nsupport/wiki/Tutorial-for-using-xliffmerge-with-angular-cli).
+## Quick Start
 
-I've created a medium post where you can find a tutorial to apply this concepts to your own project.
-[Check it here](https://medium.com/@ismaestro/angular-7-example-app-with-angularcli-angular-universal-i18n-official-firebase-66deac2dc31e),
-and let me know what do you think.
+```
+git clone https://github.com/daixianceng/angular-app-example.git
+cd angular-app-example
 
-### Firebase
+# Install Angular CLI if necessary
+npm install -g @angular/cli@latest
 
-This repo is using Firebase. We use Cloud Firestore and Cloud Storage to handle CRUD operations over
-the heroes and to store their images.
+# For Windows user if an error occurred
+npm install -g windows-build-tools
 
-## Travis CI
-
-We use Travis CI to run this tasks in order:
-
-- Linter
-- Unit tests
-- End to end tests
-- Build for production of browser and server
-- Validate that server generated using curl
-- Sonar scanner
-
-## Quick start
-
-**WARNING**
-
-> Verify that you are running node 12.4.0 by running node -v in a terminal/console window. Older
-> versions produce errors, but newer versions are fine.
-
-```bash
-npm i
+# Install dependencies
+npm install
+# Run application in development
 npm start
 ```
 
-| Tasks                      | Description                                                                                          |
-| -------------------------- | ---------------------------------------------------------------------------------------------------- |
-| npm start                  | Start the app in development mode with the english language only                                     |
-| npm start:es               | Start the app in development mode with the spanish language only                                     |
-| dev:ssr                    | Start the server like SSR                                                                            |
-| extract-i18n               | Extract all messages from templates and ts files and update the language files with new translations |
-| npm run lint               | Run the linter (tslint)                                                                              |
-| npm run test               | Run all unit tests with karma and jasmine                                                            |
-| npm run test:app:watch     | Run app unit tests and wait for changes                                                              |
-| npm run test:library:watch | Run library unit tests and wait for changes                                                          |
-| npm run e2e                | Run end to end tests with protractor                                                                 |
-| npm run build:prod         | Build the app for production with english translations                                               |
-| npm run build:prod:es      | Build the app for production with spanish translations                                               |
-| npm run builds:prod        | Builds both configurations                                                                           |
-| npm run build:ssr:prod     | Builds the server with universal in SSR mode                                                         |
-| npm run serve:ssr          | Start the node server for angular universal                                                          |
-| npm run build:library      | Build the library                                                                                    |
-| npm run bundle-report      | Build and run webpack-bundle-analyzer over stats json                                                |
-| npm run release:minor      | Create a new minor release using standard-version                                                    |
-| npm run release:major      | Create a new major release using standard-version                                                    |
-| npm run ci                 | Execute linter, tests and production builds                                                          |
+Now you can open `localhost:4200` in your borwser. The project depends on the API of [yii2-app-example](https://github.com/daixianceng/yii2-app-example). This is a clean and beautiful RESTful API, you will love it. The project has a default proxy to `https://demo.zhaidongxi.com/yii2-app-example-backend-api`, so you do not need to install `yii2-app-example`.
 
-## Bugs and feature requests
+Compile the project:
 
-Have a bug or a feature request? Please first read the
-[issue guidelines](https://github.com/Ismaestro/angular9-example-app/blob/master/CONTRIBUTING.md)
-and search for existing and closed issues. If your problem or idea is not addressed yet,
-[please open a new issue](https://github.com/Ismaestro/angular9-example-app/issues/new).
+```
+npm run build
+```
 
-## Contributing
+## Directory Layout
 
-Please read through our
-[contributing guidelines](https://github.com/Ismaestro/angular9-example-app/blob/master/CONTRIBUTING.md).
-Included are directions for opening issues, coding standards, and notes on development.
+Before you start, take a moment to see how the project structure looks like:
 
-Moreover, all HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide),
-maintained by [Ismael Ramos](https://github.com/ismaestro).
+```
+.
+├── /dist/                           # The folder for compiled output
+├── /e2e/                            # The end-to-end tests
+├── /node_modules/                   # 3rd-party libraries and utilities
+├── /src/                            # The source code of the application
+│   ├── /app/                        # The core source code
+│   │   ├── /common/                 # The utilities
+│   │   ├── /components/             # Angular components
+│   │   ├── /containers/             # The page modules
+│   │   ├── /layouts/                # The page layouts
+│   │   ├── /models/                 # The data models
+│   │   ├── /services/               # Angular services
+│   │   ├── /stores/                 # The stores of the application
+│   │   ├── /app-routing.module.ts   # The routing module
+│   │   ├── /app.component.html      # The template of the root component
+│   │   ├── /app.component.scss      # The style of the root component
+│   │   ├── /app.component.spec.ts   # The unit test for root component
+│   │   ├── /app.component.ts        # The root component
+│   │   └── /app.modules.ts          # The root module
+│   ├── /assets/                     # Static files which are copied into the /dist folder
+│   ├── /environments/               # The folder contains environment configurations
+│   │   ├── /environment.prod.ts     # The file for production environment
+│   │   └── /environment.ts          # The file for development environment
+│   ├── /themes/                     # The folder contains themes of the application
+│   ├── /app-theme.scss              # Define the current theme
+│   ├── /favicon.ico                 # Angular icon
+│   ├── /index.html                  # The main HTML page
+│   ├── /main.ts                     # The main entry point for application
+│   ├── /polyfills.ts                # The file includes polyfills
+│   ├── /styles.scss                 # The global styles of the application
+│   ├── /test.ts                     # The main entry point for unit tests
+│   ├── /tsconfig.app.json           # TypeScript compiler configuration for application
+│   ├── /tsconfig.spec.json          # TypeScript compiler configuration for unit tests
+│   └── /typings.d.ts                # TypeScript Typings
+├── .editorconfig                    # Configuration for your editor
+├── .gitignore                       # Git ignore configuration
+├── .jsbeautifyrc                    # Configuration for Beautify plugin
+├── angular.json                     # Configuration for Angular CLI
+├── karma.conf.js                    # Configuration for Karma
+├── LICENSE                          # The license of the project
+├── media.gif                        # The project demo animation file
+├── package.json                     # The list of 3rd party libraries and utilities
+├── protractor.conf.js               # End-to-end test configuration for Protractor
+├── proxy.json                       # The proxy configuration in development
+├── README.md                        # Documentation
+├── README.zh_CN.md                  # Chinese documentation
+├── sass-lint.yml                    # Configuration for Sass Lint
+├── tsconfig.json                    # TypeScript compiler configuration
+└── tslint.json                      # Linting configuration for TSLint and Codelyzer
+```
 
-Editor preferences are available in the
-[editor config](https://github.com/Ismaestro/angular9-example-app/blob/master/.editorconfig) for
-easy use in common text editors. Read more and download plugins at <https://editorconfig.org/>.
+## License
 
-## Creators
-
-**Ismael Ramos**
-
-- <https://github.com/ismaestro>
-
-## Thanks
-
-Thanks to all contributors and their support.
-
-If you have an idea or you want to do something, tell me or just do it! I'm always happy to hear
-your feedback!
-
-## Copyright and license
-
-Code and documentation copyright 2020 the authors. Code released under the
-[MIT License](https://github.com/Ismaestro/angular9-example-app/blob/master/LICENSE).
-
-Enjoy :metal:
+**angular-app-example** is released under the BSD 3-Clause License. See the bundled `LICENSE` for details.

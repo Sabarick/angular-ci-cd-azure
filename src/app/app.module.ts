@@ -1,33 +1,81 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import {
+  AuthGuard,
+  AuthInterceptor,
+  CalculationService,
+  CategoryService,
+  DeactivateGuard,
+  ErrorResponseInterceptor,
+  LoginService,
+  PostService,
+  ReversalAuthGuard,
+  StyleService,
+  UserService
+} from './services';
+import { AuthStore, CalculationStore, CategoryStore, PostStore, UserStore } from './stores';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './modules/core/core.module';
-import { SharedModule } from './shared/shared.module';
-import { TransferHttpCacheModule } from '@nguniversal/common';
-import { registerLocaleData } from '@angular/common';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { Error404PageComponent } from './pages/error404-page/error404-page.component';
-import localeEs from '@angular/common/locales/es';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 
-registerLocaleData(localeEs, 'es');
+import { HOME_URL, LOGIN_URL, TIME_RANGE_SEPARATOR } from 'app/common';
+import { MainModule } from './layouts';
+import { LoginModule, NotFoundModule } from './containers';
 
 @NgModule({
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'angularexampleapp' }),
-    TransferHttpCacheModule,
-    HttpClientModule,
-    CoreModule,
-    SharedModule,
-    AppRoutingModule
-  ],
   declarations: [
-    HomePageComponent,
-    Error404PageComponent,
     AppComponent
-  ]
+  ],
+  imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    MainModule,
+    LoginModule,
+    NotFoundModule
+  ],
+  providers: [
+    AuthGuard,
+    CalculationService,
+    CategoryService,
+    DeactivateGuard,
+    LoginService,
+    PostService,
+    ReversalAuthGuard,
+    StyleService,
+    UserService,
+    AuthStore,
+    CalculationStore,
+    CategoryStore,
+    PostStore,
+    UserStore,
+    {
+      provide: HOME_URL,
+      useValue: ''
+    },
+    {
+      provide: LOGIN_URL,
+      useValue: 'login'
+    },
+    {
+      provide: TIME_RANGE_SEPARATOR,
+      useValue: ' - '
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorResponseInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent]
 })
-
-export class AppModule {
-}
+export class AppModule { }
