@@ -1,44 +1,59 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './modules/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CommonModule } from '@angular/common';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent } from './article-helpers';
-import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
-import { ListErrorsComponent } from './list-errors.component';
-import { ShowAuthedDirective } from './show-authed.directive';
+import { HeroCardComponent } from './components/hero-card/hero-card.component';
+import { NgxExampleLibraryModule } from '@ismaestro/ngx-example-library';
+import { HeroLoadingComponent } from './components/hero-loading/hero-loading.component';
+import { NgxScrollToFirstInvalidModule } from '@ismaestro/ngx-scroll-to-first-invalid';
+import { LoadingPlaceholderComponent } from './components/loading-placeholder/loading-placeholder.component';
+import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    MaterialModule,
+    FlexLayoutModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule
+    RouterModule,
+    NgxExampleLibraryModule,
+    NgxScrollToFirstInvalidModule,
+    LazyLoadImageModule
   ],
   declarations: [
-    ArticleListComponent,
-    ArticleMetaComponent,
-    ArticlePreviewComponent,
-    FavoriteButtonComponent,
-    FollowButtonComponent,
-    ListErrorsComponent,
-    ShowAuthedDirective
+    HeaderComponent,
+    SearchBarComponent,
+    FooterComponent,
+    SpinnerComponent,
+    HeroCardComponent,
+    HeroLoadingComponent,
+    LoadingPlaceholderComponent,
+    CapitalizeFirstPipe
   ],
   exports: [
-    ArticleListComponent,
-    ArticleMetaComponent,
-    ArticlePreviewComponent,
     CommonModule,
-    FavoriteButtonComponent,
-    FollowButtonComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ListErrorsComponent,
-    RouterModule,
-    ShowAuthedDirective
+    MaterialModule,
+    FlexLayoutModule,
+    NgxExampleLibraryModule,
+    HeaderComponent,
+    SearchBarComponent,
+    FooterComponent,
+    SpinnerComponent,
+    HeroCardComponent,
+    HeroLoadingComponent,
+    NgxScrollToFirstInvalidModule,
+    LoadingPlaceholderComponent,
+    CapitalizeFirstPipe,
+    LazyLoadImageModule
   ]
 })
-export class SharedModule {}
+
+export class SharedModule {
+}
